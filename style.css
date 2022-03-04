@@ -17,6 +17,7 @@ header{
     padding: 1vh 1vh;
     background-color: rgb(146, 145, 145);
     min-width: 325px;
+    height: 10vh;
 }
 
 .nav-bar{
@@ -196,7 +197,7 @@ footer{
 
     .nav-bar{
         position: absolute;
-        top: 50px;
+        top: 10vh;
         display: none;
         background-color: rgb(146, 145, 145);
         width: 100%;
