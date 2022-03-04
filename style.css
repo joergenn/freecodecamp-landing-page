@@ -4,7 +4,7 @@ body {
 
 header{
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     display: flex;
     justify-content: space-between;
@@ -12,7 +12,7 @@ header{
     width: 100vw;
     margin: 0 auto;
     padding: 1vh 1vh;
-    background-color: gainsboro;
+    background-color: rgb(146, 145, 145);
 }
 
 #nav-bar{
@@ -36,14 +36,15 @@ header{
     justify-content: center;
     flex-direction: column;
     position: relative;
-    z-index: 2;
+    z-index: 1;
     top: 70px;
     margin: 0 auto;
     width: 100%;
-    max-width: 60vw;
+    /* max-width: 60vw; */
 }
 
 .form-contact {  
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -111,8 +112,11 @@ input {
 
 #yt {
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
 
+/* 
 .products{
     margin-top: 30px;
     display: flex;
@@ -122,47 +126,47 @@ input {
 }
 
 .product-item{
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 300px;
-    height: 300px;
+    width: 325px;
+    height: 450px;
     border: 1px solid black;
     margin-bottom: 30px;
 }
 
 .product-item > h3{
     width: 100%;
-    position: absolute;
-    top: -18px;
-    left: 0;
-    padding: 10px 0 10px 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
     text-align: center;
-    background-color: gainsboro;
+    background-color: rgb(146, 145, 145);
     font-weight: 500;
 }
 
-.product-item > p {
-    top: 10px;
-    position: relative;
-    line-height: 0.5em;
+.price{
+    margin-top: 15px;
+}
+
+.description {
+    font-size: 18px;
+    text-align: center;
+    width: 90%;
 }
 
 .product-item > input {
-    bottom: -15px;
-    position: relative;
+    margin-top: 20px;
 }
 
 .price {
     font-size: 32px;
     font-weight: 800;
-}
+} */
 
-footer{
+/* footer{
     height: 80px;
-    background-color: gainsboro;
+    background-color: rgb(146, 145, 145);
 }
 
 .footer{
@@ -174,32 +178,40 @@ footer{
     align-items: flex-end;
     justify-content: center;
 }
+*/
 
-.footer-nav{
-    position: relative;
-    top: 15px;
+
+
+footer{
+    background-color: rgb(146, 145, 145);
+    margin-top: 100px;
+    min-width: 320px;
 }
+
+.footer{
+    margin: 0 auto;
+    width: 90vw;
+    /* height: 10vw; */
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
 
 .footer-nav > a{
     margin-right: 15px;
     font-weight: 300;
     text-decoration: none;
     color: black;
+} 
+
+.footer-paragraph{
+    margin: 0;
 }
 
-/* button{
-    border: none;
-    background-color: gainsboro;
-}
-
-button > a{
-    text-decoration: none;
-    color: black;
-    font-size: 18px;
-    font-weight: 500;
-    
-    
-} */
 
 @media only screen and (max-width: 900px) {
     iframe{
@@ -225,12 +237,21 @@ button > a{
 }
 
 @media only screen and (max-width: 600px) {
-    .main {
+    /* .main {
         top: 100px;
-    }
+    } */
     iframe{
-        height: 200px;
-        width: 350px;
+        height: 150px;
+        width: 270px;
         margin: 0 auto;
+    }
+
+    .about>img{
+        height: 60px;
+        width: 60px;
+        margin-right: 50px;
+    }
+    .about{
+        width: 90vw;
     }
 }
