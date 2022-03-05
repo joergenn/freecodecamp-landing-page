@@ -3,6 +3,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: Helvetica, sans-serif;
 }
 
 header{
@@ -14,10 +15,10 @@ header{
     align-items: center;
     width: 100vw;
     margin: 0 auto;
-    padding: 1vh 1vh;
+    /* padding: 1vh 1vh; */
     background-color: rgb(146, 145, 145);
     min-width: 325px;
-    height: 10vh;
+    height: 80px;
 }
 
 .nav-bar{
@@ -37,6 +38,8 @@ header{
 }
 
 .ham-menu{
+    position: relative;
+    bottom: 2px;
     display: none;
     flex-direction: column;
     justify-content: space-between;
@@ -139,6 +142,107 @@ input {
     justify-content: center;
 }
 
+.goods{
+    margin: 0 auto;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: auto;
+    gap: 20px;
+    padding-top: 50px; 
+}
+
+.item{
+    position: relative;
+    color: #333333;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 450px;
+}
+
+.image{
+    
+    margin: 0 auto;
+    width: 90%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+    transition: transform .2s;
+}
+
+.image:hover{
+    transform: scale(1.5);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: relative;
+    z-index: 3;
+}
+
+.description{
+    height: 250px;
+}
+
+.description > p {
+    line-height: 1.3;
+    font-size: 0.9em;
+    padding: 15px;
+    background: #fafafa;
+}
+
+.description > h3{
+    text-align: center;
+}
+
+.buy-section{
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    align-items: center;
+}
+
+.price{
+    font-weight: 800;
+}
+
+.buy-btn{
+    padding: 10px 50px;
+    background-color: rgb(214, 174, 44);
+    border: none;
+    font-weight: 600;
+}
+
+.buy-btn > a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.buy-btn:hover{
+    box-shadow: 12px 9px 24px 12px rgba(255,214,107,0.5);
+    cursor: pointer;
+}
+
+.more{
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.show-more{
+    padding: 10px 50px;
+    background-color: rgb(214, 174, 44);
+    border: none;
+    font-weight: 600;
+    text-decoration: none;
+    color: #333333;
+}
+
+.show-more:hover{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    cursor: pointer;
+}
+
+
 footer{
     background-color: rgb(146, 145, 145);
     margin-top: 100px;
@@ -197,7 +301,7 @@ footer{
 
     .nav-bar{
         position: absolute;
-        top: 10vh;
+        top: 80px;
         display: none;
         background-color: rgb(146, 145, 145);
         width: 100%;
