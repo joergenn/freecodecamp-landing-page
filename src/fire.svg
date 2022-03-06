@@ -1,91 +1,44 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlns:cc="http://creativecommons.org/ns#"
-    xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-    id="svg2"
-    sodipodi:docname="_svgclean2.svg"
-    viewBox="0 0 130 156"
-    version="1.1"
-    inkscape:version="0.48.3.1 r9886"
-  >
-  <sodipodi:namedview
-      id="namedview8"
-      bordercolor="#ff8c00"
-      inkscape:pageshadow="2"
-      guidetolerance="10"
-      pagecolor="#ffffff"
-      gridtolerance="10"
-      inkscape:window-maximized="0"
-      inkscape:zoom="0.22425739"
-      objecttolerance="10"
-      borderopacity="1"
-      inkscape:current-layer="svg2"
-      inkscape:cx="372.04724"
-      inkscape:cy="-370.18109"
-      inkscape:window-y="0"
-      inkscape:window-x="0"
-      inkscape:window-width="640"
-      showgrid="false"
-      inkscape:pageopacity="0"
-      inkscape:window-height="480"
-  />
-  <path
-      id="path4"
-	  style="stroke-linejoin:round;stroke:#ff8c00;stroke-width:8.029;fill:none"
-      inkscape:connector-curvature="0"
-      d="m0 100.8c0-14.8 4-26.8 10.4-36 0 18.2 4.4 24.6 14 24.6 6.4 0 13-4.8 13-13 0-7.4-5-20.8-5-35.2s4.8-29.8 24.4-41.2c-4.4 11.6-6.2 21.4-6.2 29.4 0 21.2 12.8 30.8 24.2 30.8 9.2 0 18.8-6 18.8-23.4 6.2 6.8 9 14.6 9 22.4 0 12.4-6.8 23.4-6.8 33.4 0 8.2 6.6 13 13 13 11.4 0 14.8-10.2 14.8-27 3.4 5.8 6.4 17.2 6.4 27 0 29.2-27.6 50.4-58.4 50.4 26-9.8 30.8-22.8 30.8-37.4-6.4 11.4-13 13-16.2 13-19.6 0 1.6-37.4-32.6-63.4 5.6 12 7.8 22.4 7.8 30.8 0 18-9.8 27.8-19.2 27.8-8 0-16-6.4-19.2-20 0 19 5.6 37 30.6 49.2-39-6.4-53.6-30.8-53.6-55.2z"
-  />
-  <metadata
-      id="metadata6"
-    >
-    <rdf:RDF
-      >
-      <cc:Work
-        >
-        <dc:format
-          >image/svg+xml</dc:format
-        >
-        <dc:type
-            rdf:resource="http://purl.org/dc/dcmitype/StillImage"
-        />
-        <cc:license
-            rdf:resource="http://creativecommons.org/licenses/publicdomain/"
-        />
-        <dc:publisher
-          >
-          <cc:Agent
-              rdf:about="http://openclipart.org/"
-            >
-            <dc:title
-              >Openclipart</dc:title
-            >
-          </cc:Agent
-          >
-        </dc:publisher
-        >
-      </cc:Work
-      >
-      <cc:License
-          rdf:about="http://creativecommons.org/licenses/publicdomain/"
-        >
-        <cc:permits
-            rdf:resource="http://creativecommons.org/ns#Reproduction"
-        />
-        <cc:permits
-            rdf:resource="http://creativecommons.org/ns#Distribution"
-        />
-        <cc:permits
-            rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
-        />
-      </cc:License
-      >
-    </rdf:RDF
-    >
-  </metadata
-  >
-</svg
->
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 611.999 611.999" style="enable-background:new 0 0 611.999 611.999;" xml:space="preserve">
+<g fill="#ff8c00" fill-rule="nonzero">
+	<path d="M216.02,611.195c5.978,3.178,12.284-3.704,8.624-9.4c-19.866-30.919-38.678-82.947-8.706-149.952
+		c49.982-111.737,80.396-169.609,80.396-169.609s16.177,67.536,60.029,127.585c42.205,57.793,65.306,130.478,28.064,191.029
+		c-3.495,5.683,2.668,12.388,8.607,9.349c46.1-23.582,97.806-70.885,103.64-165.017c2.151-28.764-1.075-69.034-17.206-119.851
+		c-20.741-64.406-46.239-94.459-60.992-107.365c-4.413-3.861-11.276-0.439-10.914,5.413c4.299,69.494-21.845,87.129-36.726,47.386
+		c-5.943-15.874-9.409-43.33-9.409-76.766c0-55.665-16.15-112.967-51.755-159.531c-9.259-12.109-20.093-23.424-32.523-33.073
+		c-4.5-3.494-11.023,0.018-10.611,5.7c2.734,37.736,0.257,145.885-94.624,275.089c-86.029,119.851-52.693,211.896-40.864,236.826
+		C153.666,566.767,185.212,594.814,216.02,611.195z"/>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
