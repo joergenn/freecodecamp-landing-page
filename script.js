@@ -20,14 +20,6 @@ const button = document.querySelector('.ham-menu'),
 
 let  benefitsBtn, benefitsList, data;
 
-fetch("./data.json")
-    .then(function(resp){
-        return resp.json();
-    })
-    .then(function(jsonData){
-        data = jsonData;
-    });
-
 function addExtraInfo(){
     benefitsBtn = [...document.querySelectorAll('.more-info')],
     benefitsList = [...document.querySelectorAll('.benefits')];
@@ -79,7 +71,7 @@ function closeModal(){
         closeModalSpan.innerHTML = `${i}`;
         i--;
         if(i == 0){
-            clearInterval(timer);
+            clearInterval(timer); 
             closeModalSpan.innerHTML = "close";
             closeModalSpan.classList.add("material-icons-outlined");
             closeModalBtn.style.pointerEvents = 'all';
@@ -99,7 +91,9 @@ function showModal(){
 
 function showSubscription(){
     if(localStorage.getItem('isSubscribed') != 'true'){
-        subContainer.style.display = 'flex';
+
+        subContainer.style.zIndex = '5';
+        document.querySelector('.sub').style.display = 'flex';
     } 
 }
 
@@ -174,6 +168,7 @@ goUpBtn.addEventListener('click', () => {
 
 closeModalBtn.addEventListener('click', () => {
     modal.style.display = 'none'; 
+    document.querySelector('header').style.pointerEvents = 'all';
 })
 
 subCloseBtn.addEventListener('click', () =>{
@@ -186,7 +181,6 @@ notNowBtn.addEventListener('click', () =>{
 
 subBtn.addEventListener('click', () =>{
     if(emailRegEx.test(emailInput.value)){
-        console.log('truye');
         document.querySelector('.sub-header').innerHTML = `
             <h2>Don't miss our updates</h2>
             <h1 class="thank-u">Thank you for subscription</h1
@@ -203,5 +197,13 @@ subBtn.addEventListener('click', () =>{
         `;
     }   
 })
+
+fetch("./data.json")
+    .then(function(resp){
+        return resp.json();
+    })
+    .then(function(jsonData){
+        data = jsonData;
+    });
 
 addExtraInfo();
