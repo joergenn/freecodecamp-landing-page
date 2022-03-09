@@ -2,9 +2,31 @@ const button = document.querySelector('.ham-menu'),
       menu = document.querySelector('.nav-bar'),
       goods = document.querySelector('.goods'),
       showMoreBtn = document.querySelector('.show-more'),
-      goUpBtn = document.querySelector('.go-up');
+      goUpBtn = document.querySelector('.go-up'),
+      modal = document.querySelector('.modal-container'),
+      closeModalBtn = document.querySelector('.close-modal'),
+      closeModalSpan = document.querySelector('.close-modal-span'),
+      subContainer = document.querySelector('.sub-container'),
+      subCloseBtn = document.querySelector('.close-sub'),
+      notNowBtn = document.querySelector('.not-now'),
+      subBtn = document.querySelector('.sub-btn'),
+      emailInput = document.querySelector('#email'),
+      endDate = new Date('04/01/2022 10:00 AM'),
+      emailRegEx = /^[^\s@]+@[^\s@]+\.[^\s@]+/,
+      _second = 1000,
+      _minute = _second * 60,
+      _hour = _minute * 60,
+      _day = _hour * 24;
 
-let  benefitsBtn, benefitsList;
+let  benefitsBtn, benefitsList, data;
+
+fetch("./data.json")
+    .then(function(resp){
+        return resp.json();
+    })
+    .then(function(jsonData){
+        data = jsonData;
+    });
 
 function addExtraInfo(){
     benefitsBtn = [...document.querySelectorAll('.more-info')],
@@ -20,16 +42,6 @@ function addExtraInfo(){
     }
 };
 
-let data;
-fetch("./data.json")
-    .then(function(resp){
-        return resp.json();
-    })
-    .then(function(jsonData){
-        data = jsonData;
-    });
-
-
 function getDiscount(discountSize){
     if(discountSize == 0){
         return ``
@@ -43,7 +55,57 @@ function getDiscount(discountSize){
     }
 }
 
+function countdown(){
+    let now = new Date();
+    let delta = endDate - now;
+    if (delta < 0) {
+        document.querySelector('.countdown').innerHTML = 'EXPIRED!';
+        return;
+    }
+    let days = Math.floor(delta / _day),
+        hours = Math.floor((delta % _day) / _hour),
+        minutes = Math.floor((delta % _hour) / _minute),
+        seconds = Math.floor((delta % _minute) / _second);
+
+    document.querySelector('.countdown').innerHTML = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds remaining`;
+}
+
+function closeModal(){
+    let i, timer;
+    closeModalBtn.style.display = 'flex';
+
+    i = 9;
+    timer = setInterval(() =>{
+        closeModalSpan.innerHTML = `${i}`;
+        i--;
+        if(i == 0){
+            clearInterval(timer);
+            closeModalSpan.innerHTML = "close";
+            closeModalSpan.classList.add("material-icons-outlined");
+            closeModalBtn.style.pointerEvents = 'all';
+        }
+    }, 1000);
+}
+
+function showModal(){
+    if(sessionStorage.getItem('modalWasShown') != 'true'){   
+        setInterval(countdown, 1000); 
+        closeModal();     
+        modal.style.display = 'flex';
+        document.querySelector('header').style.pointerEvents = 'none';   
+        sessionStorage.setItem('modalWasShown', 'true');
+    }
+}
+
+function showSubscription(){
+    if(localStorage.getItem('isSubscribed') != 'true'){
+        subContainer.style.display = 'flex';
+    } 
+}
+
 function append(){
+    showModal();
+
     let newData = data.slice(-3);
     for(let i = 0; i < 3; i++){
        data.pop();
@@ -80,6 +142,7 @@ function append(){
 
     if(data.length == 0){
         showMoreBtn.style.display = 'none';
+        showSubscription();
     }
 }
 
@@ -105,11 +168,40 @@ window.addEventListener("scroll", () => {
     }
 });
 
-goUpBtn.addEventListener('mouseenter', () => {
-    goUpBtn.innerHTML = `<h3><a href="#">GO UP!</a></h3>`;
+goUpBtn.addEventListener('click', () => {
+    window.scrollTo(0,0); 
 })
-goUpBtn.addEventListener('mouseleave', () => {
-    goUpBtn.innerHTML = `<h3><a href="#">GO UP</a></h3>`;
+
+closeModalBtn.addEventListener('click', () => {
+    modal.style.display = 'none'; 
+})
+
+subCloseBtn.addEventListener('click', () =>{
+    subContainer.style.display = 'none';
+})
+
+notNowBtn.addEventListener('click', () =>{
+    subContainer.style.display = 'none';
+})
+
+subBtn.addEventListener('click', () =>{
+    if(emailRegEx.test(emailInput.value)){
+        console.log('truye');
+        document.querySelector('.sub-header').innerHTML = `
+            <h2>Don't miss our updates</h2>
+            <h1 class="thank-u">Thank you for subscription</h1
+            <p></p>
+        `;
+        setTimeout(() =>{subCloseBtn.style.display = 'flex';}, 1000);    
+        localStorage.setItem('isSubscribed', 'true');   
+    }
+    else{
+        document.querySelector('.sub-header').innerHTML = `
+            <h2>Don't miss our updates</h2>
+            <h1 class="thank-u">Subscribe for our email distribution</h1>
+            <p class="red">Enter valid email!</p>
+        `;
+    }   
 })
 
 addExtraInfo();

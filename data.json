@@ -13,10 +13,10 @@
         "price": 520,
         "discount": 50,
         "image": "src/5.jpg",
-        "benefits": ["Yjellow brass slide and tuning slide", "Lightweight instrument", "Perfect for younger players", "Medium Bore"]
+        "benefits": ["Yellow brass slide and tuning slide", "Lightweight instrument", "Perfect for younger players", "Medium Bore"]
     },
     {
-        "name": "John Packer JP134 C Valve (EX DEMO A)",
+        "name": "John Packer JP134 Valve (EX DEMO A)",
         "description": "So you are a valve player who wants to give the trombone a go, but don’t want to have to learn the slide positions, the JP134 is your answer.",
         "price": 700,
         "discount": 0,

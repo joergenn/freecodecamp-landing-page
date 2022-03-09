@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Original Trombones</title>
-    <!-- <script type="text/javascript" src="data.json"></script> -->
+    <link rel="stylesheet" href="style.css">  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -27,8 +27,8 @@
         <div class="form-contact">
             <h1>Handcrafted, home-made masterpieces</h1>
             <form id="form" action="https://www.freecodecamp.com/email-submit">
-                <input id="email" name="email" type="email" placeholder="Enter your email address">
-                <input id="submit" type="submit" value="GET STARTED">
+                <input id="email-head" name="email-head" type="email" placeholder="Enter your email address">
+                <input id="submit-head" type="submit" value="GET STARTED">
             </form>
         </div> 
         <div class="about">
@@ -59,7 +59,7 @@
             <iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/y8Yv4pnO7qc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="goods">
-            <div class="item">
+            <!-- <div class="item">
                 <img src="src/1.jpg" alt="Trombone" class="image">
                 <div class="description">
                     <h3>Jupiter JSL-132 Bb</h3>
@@ -120,15 +120,61 @@
                 <div class="discount">
                     <span>33% OFF!</span>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="more">
             <input class="show-more" type="submit" value="Show More">
         </div>
+        <div class="go-up">
+            <span class="material-icons-outlined">arrow_upward</span>
+        </div>
+        <div class="modal-container">
+            <div class="modal">
+                <div class="modal-content">
+                    <div class="img">
+                        <img src="src/3.jpg" alt="Trombone">
+                    </div>
+                    <div class="info">
+                        <h2>50% Off! Go buy now</h2>
+                        <h3>John Packer JP136 Eb Alto Trombone</h3>
+                        <ul>
+                            <li>Yellow brass slide and tuning slide</li>
+                            <li>Lightweight instrument</li>
+                            <li>Perfect for younger players</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="countdown-content">
+                    <div class="expite-date">Available till 1th April!</div>
+                    <div class="countdown"></div>
+                </div> 
+                <button class="close-modal"><span class="close-modal-span">10</span></button>  
+            </div>
+        </div>
+        <div class="sub-container">
+            <div class="sub">
+                <div class="sub-header">
+                    <h2>Don't miss our updates</h2>
+                    <h1 class="thank-u">Subscribe for our email distribution</h1>
+                    <p class="red"></p>
+                </div>  
+                <div class="email-container">
+                    <label for="email"><h3>Your email:</h3></label>
+                    <div class="input-container">
+                        <span class="material-icons-outlined">email</span>
+                        <input type="email" id="email" placeholder="example@gmail.com">
+                    </div>
+                    <div class="sub-buttons">     
+                        <button class="sub-btn">Subscribe</button>
+                        <button class="not-now">Not now</button>
+                    </div>
+                </div>                        
+                <button class="close-sub"><span class="material-icons-outlined">close</span></button>  
+            </div>
+          </div>
+        
     </div>
-    <div class="go-up">
-        <h3><a href="#">GO UP</a></h3>
-    </div>
+    
     <footer>
         <div class="footer">
             <div class="footer-paragraph">
