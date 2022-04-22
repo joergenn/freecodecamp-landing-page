@@ -11,13 +11,14 @@
 </head>
 <body>
     <header id="header"> 
-        <img src="https://cdn.freecodecamp.org/testable-projects-fcc/images/product-landing-page-logo.png" id="header-img" alt="none" width="300x">
+        <img src="https://cdn.freecodecamp.org/testable-projects-fcc/images/product-landing-page-logo.png" id="header-img" alt="none" width="300px">
         <a href="#" class="ham-menu">
             <div class="menu-item"></div>
             <div class="menu-item"></div>
             <div class="menu-item"></div>
-        </a>
+        </a>       
         <nav class="nav-bar">
+            <img src="src/cart.svg" height="35px" alt="Shopping Cart" id="cart">
             <a class="nav-link" href="#features">Features</a>
             <a class="nav-link" href="#how-it-works">How It Works</a>
             <a class="nav-link" href="#pricing">Pricing</a>
@@ -171,8 +172,17 @@
                 </div>                        
                 <button class="close-sub"><span class="material-icons-outlined">close</span></button>  
             </div>
-          </div>
-        
+        </div>
+        <div class="cart-parent">
+            <div class="cart-container">
+                <button class="close-cart"><span class="material-icons-outlined">close</span></button>
+                <h3 class="cart-head">Your cart is: </h3>
+                <div class="img-empty">
+                    <img alt="Empty..." src="src/cat.jpg" class="empty-cart">
+                </div>        
+                <h3 class="final-price">Final price = 0</h3>
+            </div>       
+        </div>
     </div>
     
     <footer>

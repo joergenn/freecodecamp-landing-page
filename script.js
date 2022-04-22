@@ -11,6 +11,8 @@ const button = document.querySelector('.ham-menu'),
       notNowBtn = document.querySelector('.not-now'),
       subBtn = document.querySelector('.sub-btn'),
       emailInput = document.querySelector('#email'),
+      cart = document.querySelector('#cart'),
+      cartContainer = document.querySelector('.cart-container'),
       endDate = new Date('04/01/2022 10:00 AM'),
       emailRegEx = /^[^\s@]+@[^\s@]+\.[^\s@]+/,
       _second = 1000,
@@ -18,7 +20,7 @@ const button = document.querySelector('.ham-menu'),
       _hour = _minute * 60,
       _day = _hour * 24;
 
-let  benefitsBtn, benefitsList, data;
+let  benefitsBtn, benefitsList, data, buyBtn, cartArray = [];
 
 function addExtraInfo(){
     benefitsBtn = [...document.querySelectorAll('.more-info')],
@@ -33,6 +35,83 @@ function addExtraInfo(){
         });
     }
 };
+
+function addExtraBuyBtn(){
+    buyBtn = [...document.querySelectorAll('.buy-btn')];
+    for(let i = 0; i < buyBtn.length; i++){
+        buyBtn[i].addEventListener('click', function addToCart(event){
+            let elem = buyBtn[i].parentElement.parentElement;
+            // console.log(elem.querySelector('img').getAttribute('src'));
+            // console.log(elem.querySelector('h3').innerText);
+            // console.log(elem.querySelector('.price').innerText);
+            buyBtn[i].style.backgroundColor = '#00ff00';
+            cartArray.push(
+                {
+                    "name": elem.querySelector('h3').innerText,
+                    "price": elem.querySelector('.price').innerText,
+                    "image": elem.querySelector('img').getAttribute('src')
+                }
+            );
+            buyBtn[i].removeEventListener(event.type, addToCart);
+        });
+    }
+};
+
+function appendToCart(){
+    let price = 0
+    cartContainer.innerHTML = `
+        <button class="close-cart"><span class="material-icons-outlined">close</span></button>
+        <h3 class="cart-head">Your cart is: </h3>
+        ${cartArray.map(function(item){
+            price += parseInt(item.price);
+            return `
+                <div class="cart-item">
+                    <div class="cart-photo">
+                        <img src="${item.image}" alt="Trombone" class="cart-image">
+                    </div>               
+                    <div class="cart-description">
+                        <h3>${item.name}</h3>
+                        <div class="amount">
+                            <input type="number" placeholder="1" class="quantity" min="1" max="9999" step="1">
+                            <p class="item-price">${item.price}</p>
+                        </div>
+                    </div>            
+                </div>    
+            `
+        }).join('')}
+        <h3 class="final-price">Final price = ${price}$</h3>
+    `;
+    closeCart();
+    calculateItemPrice();
+}
+
+function calculateItemPrice(){
+    let inputs = [...document.querySelector('.cart-container').querySelectorAll('input')];
+    for(let i = 0; i < inputs.length; i++){
+        let elem = inputs[i].parentElement;
+        let priceTag = elem.querySelector('.item-price');
+        let price = priceTag.innerText;
+        
+        inputs[i].addEventListener('input', () =>{
+            let value = inputs[i].value,
+                sum = 0;
+
+            if(value <= 0){
+                value = 1;
+            }
+            priceTag.innerHTML = `${parseInt(price) * value}$`;
+            let itemPrices = [...document.querySelectorAll('.item-price')];
+            itemPrices.forEach((item) =>{
+                sum += parseInt(item.textContent.slice(0, -1));
+            })
+            // let qwerty = parseInt(document.querySelector('.final-price').innerHTML.split(' ')[3].slice(0, -1));
+            // console.log(qwerty * 10);
+            // console.log(typeof(qwerty));
+            document.querySelector('.final-price').innerHTML = `Final price = ${sum}$`;
+        })
+    }
+    // console.log(inputs);
+}
 
 function getDiscount(discountSize){
     if(discountSize == 0){
@@ -133,11 +212,19 @@ function append(){
     }).join('')}`)   
 
     addExtraInfo();
+    addExtraBuyBtn();
 
     if(data.length == 0){
         showMoreBtn.style.display = 'none';
         showSubscription();
     }
+}
+
+function closeCart(){
+    let closeCartBtn = document.querySelector('.close-cart');
+    closeCartBtn.addEventListener('click', () => {
+        cartContainer.style.display = 'none';
+    })
 }
 
 
@@ -198,6 +285,16 @@ subBtn.addEventListener('click', () =>{
     }   
 })
 
+cart.addEventListener('click', () => {
+    if(cartArray.length != 0){
+        cartContainer.style.alignItems = 'space-between';
+        appendToCart();
+    }
+    cartContainer.style.display = 'flex';
+})
+
+
+
 fetch("./data.json")
     .then(function(resp){
         return resp.json();
@@ -207,3 +304,5 @@ fetch("./data.json")
     });
 
 addExtraInfo();
+addExtraBuyBtn();
+closeCart();
