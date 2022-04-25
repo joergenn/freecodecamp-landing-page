@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">  
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
     <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alasql@1.7"></script>
 </head>
 <body>
     <header id="header"> 
@@ -18,6 +19,7 @@
             <div class="menu-item"></div>
         </a>       
         <nav class="nav-bar">
+            <img src="src/news.svg" height="35px" alt="News" id="news">
             <img src="src/cart.svg" height="35px" alt="Shopping Cart" id="cart">
             <a class="nav-link" href="#features">Features</a>
             <a class="nav-link" href="#how-it-works">How It Works</a>
@@ -177,7 +179,18 @@
             <div class="cart-container">
                 <button class="close-cart"><span class="material-icons-outlined">close</span></button>
                 <h3 class="cart-head">Your cart is: </h3>
-                <div class="img-empty">
+                <div class="sort-block">
+                    <div class="sort-option">
+                        <label for="sort-options">Order by:</label>
+                        <select name="sort-options" id="sort-select">
+                            <option value="asc">Price ascending</option>
+                            <option value="desc">Price descending</option>
+                            <option value="alphabet">Alphabetically</option>
+                        </select>
+                    </div>
+                    <button class="sort-btn"><span>Sort</span></button>
+                </div>
+                <div class="cart-items">
                     <img alt="Empty..." src="src/cat.jpg" class="empty-cart">
                 </div>        
                 <h3 class="final-price">Final price = 0</h3>

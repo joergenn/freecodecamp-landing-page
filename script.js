@@ -13,6 +13,7 @@ const button = document.querySelector('.ham-menu'),
       emailInput = document.querySelector('#email'),
       cart = document.querySelector('#cart'),
       cartContainer = document.querySelector('.cart-container'),
+      cartItems = document.querySelector('.cart-items'),
       endDate = new Date('04/01/2022 10:00 AM'),
       emailRegEx = /^[^\s@]+@[^\s@]+\.[^\s@]+/,
       _second = 1000,
@@ -20,7 +21,7 @@ const button = document.querySelector('.ham-menu'),
       _hour = _minute * 60,
       _day = _hour * 24;
 
-let  benefitsBtn, benefitsList, data, buyBtn, cartArray = [];
+let  benefitsBtn, benefitsList, data, buyBtn, itemsLoaded = 0, cartArray = [];
 
 function addExtraInfo(){
     benefitsBtn = [...document.querySelectorAll('.more-info')],
@@ -36,20 +37,31 @@ function addExtraInfo(){
     }
 };
 
+function isInCart(name){
+    let flag = false;
+    cartArray.forEach((el) =>{
+        if(el.name == name){
+            return true;
+        }
+    })
+    return flag;
+}
+
 function addExtraBuyBtn(){
     buyBtn = [...document.querySelectorAll('.buy-btn')];
-    for(let i = 0; i < buyBtn.length; i++){
+    for(let i = itemsLoaded; i < buyBtn.length; i++){
+        // console.log(buyBtn[i].parentElement.parentElement.querySelector('h3').textContent);
+        // if(isInCart(buyBtn[i].parentElement.parentElement.querySelector('h3').textContent))
+        // console.log(getEventListeners(document.querySelector('your-element-selector')));
         buyBtn[i].addEventListener('click', function addToCart(event){
             let elem = buyBtn[i].parentElement.parentElement;
-            // console.log(elem.querySelector('img').getAttribute('src'));
-            // console.log(elem.querySelector('h3').innerText);
-            // console.log(elem.querySelector('.price').innerText);
             buyBtn[i].style.backgroundColor = '#00ff00';
             cartArray.push(
                 {
-                    "name": elem.querySelector('h3').innerText,
-                    "price": elem.querySelector('.price').innerText,
-                    "image": elem.querySelector('img').getAttribute('src')
+                    name: elem.querySelector('h3').innerText,
+                    price: elem.querySelector('.price').innerText,
+                    image: elem.querySelector('img').getAttribute('src'),
+                    quantity: 1
                 }
             );
             buyBtn[i].removeEventListener(event.type, addToCart);
@@ -58,10 +70,8 @@ function addExtraBuyBtn(){
 };
 
 function appendToCart(){
-    let price = 0
-    cartContainer.innerHTML = `
-        <button class="close-cart"><span class="material-icons-outlined">close</span></button>
-        <h3 class="cart-head">Your cart is: </h3>
+    let price = 0;
+    cartItems.innerHTML = `
         ${cartArray.map(function(item){
             price += parseInt(item.price);
             return `
@@ -72,17 +82,53 @@ function appendToCart(){
                     <div class="cart-description">
                         <h3>${item.name}</h3>
                         <div class="amount">
-                            <input type="number" placeholder="1" class="quantity" min="1" max="9999" step="1">
+                            <input type="number" placeholder="${item.quantity}" class="quantity" min="0" max="9999" step="1">
                             <p class="item-price">${item.price}</p>
                         </div>
                     </div>            
                 </div>    
             `
         }).join('')}
-        <h3 class="final-price">Final price = ${price}$</h3>
-    `;
-    closeCart();
+    `
+    // closeCart();
     calculateItemPrice();
+    // console.log(cartArray);
+    // let res = alasql('SELECT  FROM ? SORT BY price',[cartArray]);
+    // console.log(res);
+}
+
+function addBuyBtnFunctionality(name){
+    let items = [...document.querySelectorAll('.item')];
+    for(let i = 0; i < items.length; i++){
+        if(items[i].querySelector('h3').textContent == name){
+            let btn = items[i].querySelector('.buy-btn');
+            btn.style.backgroundColor = 'rgb(214, 174, 44)';
+
+            btn.addEventListener('click', function addToCart(event){
+                let elem = btn.parentElement.parentElement;
+                btn.style.backgroundColor = '#00ff00';
+                cartArray.push(
+                    {
+                        name: elem.querySelector('h3').innerText,
+                        price: elem.querySelector('.price').innerText,
+                        image: elem.querySelector('img').getAttribute('src'),
+                        quantity: 1
+                    }
+                );
+                btn.removeEventListener(event.type, addToCart);
+            });
+        }
+    }
+}
+
+function deleteFromCart(item){
+    addBuyBtnFunctionality(item.querySelector('h3').textContent);
+    item.remove();
+    let name = item.querySelector('.cart-description').querySelector('h3').textContent;
+    let result = cartArray.filter((el) => {
+        return el.name != name;
+    })
+    cartArray = [...result];
 }
 
 function calculateItemPrice(){
@@ -90,27 +136,34 @@ function calculateItemPrice(){
     for(let i = 0; i < inputs.length; i++){
         let elem = inputs[i].parentElement;
         let priceTag = elem.querySelector('.item-price');
-        let price = priceTag.innerText;
+        let price = priceTag.innerText,
+            name = priceTag.parentElement.parentElement.parentElement.querySelector('h3').textContent;
         
         inputs[i].addEventListener('input', () =>{
             let value = inputs[i].value,
                 sum = 0;
 
-            if(value <= 0){
+            if(value < 0){
                 value = 1;
             }
+            else if(value == 0){
+                let cartItem = inputs[i].parentElement.parentElement.parentElement;
+                deleteFromCart(cartItem);
+            }
+            for(let j = 0; j < cartArray.length; j++){
+                if(cartArray[j].name == name){
+                    cartArray[j].quantity = value;
+                }
+            }
+
             priceTag.innerHTML = `${parseInt(price) * value}$`;
             let itemPrices = [...document.querySelectorAll('.item-price')];
             itemPrices.forEach((item) =>{
                 sum += parseInt(item.textContent.slice(0, -1));
             })
-            // let qwerty = parseInt(document.querySelector('.final-price').innerHTML.split(' ')[3].slice(0, -1));
-            // console.log(qwerty * 10);
-            // console.log(typeof(qwerty));
             document.querySelector('.final-price').innerHTML = `Final price = ${sum}$`;
         })
     }
-    // console.log(inputs);
 }
 
 function getDiscount(discountSize){
@@ -178,12 +231,11 @@ function showSubscription(){
 
 function append(){
     showModal();
-
     let newData = data.slice(-3);
+    itemsLoaded += 3;
     for(let i = 0; i < 3; i++){
        data.pop();
     }
-
     goods.insertAdjacentHTML('beforeEnd', `${newData.map(function(item){
         let benefits = item.benefits;
 
@@ -226,7 +278,6 @@ function closeCart(){
         cartContainer.style.display = 'none';
     })
 }
-
 
 showMoreBtn.addEventListener('click', append);
 
@@ -306,3 +357,7 @@ fetch("./data.json")
 addExtraInfo();
 addExtraBuyBtn();
 closeCart();
+
+// let datal = [{a:1,b:10}, {a:2,b:20}, {a:1,b:30}, {a:1,b:40}];
+// let res = alasql('SELECT a, SUM(b) AS b FROM ? GROUP BY a',[datal]);
+// console.log(res);
