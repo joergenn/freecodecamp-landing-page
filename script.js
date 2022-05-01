@@ -14,14 +14,21 @@ const button = document.querySelector('.ham-menu'),
       cart = document.querySelector('#cart'),
       cartContainer = document.querySelector('.cart-container'),
       cartItems = document.querySelector('.cart-items'),
+      sortOption = document.querySelector('#sort-select'),
+      sortBtn = document.querySelector('.sort-btn'),
+      newsButton = [...document.querySelectorAll('.open-news')],
+      graphicsContainer = document.querySelector('.graphics'),
+      newsMobile = document.querySelector('.news-mobile-container'),
+      maxPriceInput = document.querySelector('#maxPrice'),
+      minPriceInput = document.querySelector('#minPrice'),
       endDate = new Date('04/01/2022 10:00 AM'),
-      emailRegEx = /^[^\s@]+@[^\s@]+\.[^\s@]+/,
+      emailRegEx = /^[^\s@]+@[^\s@]+\.[^\s@]+/,     
       _second = 1000,
       _minute = _second * 60,
       _hour = _minute * 60,
       _day = _hour * 24;
 
-let  benefitsBtn, benefitsList, data, buyBtn, itemsLoaded = 0, cartArray = [];
+let benefitsBtn, benefitsList, data, buyBtn, itemsLoaded = 0, cartArray = [], graphBackup;
 
 function addExtraInfo(){
     benefitsBtn = [...document.querySelectorAll('.more-info')],
@@ -37,29 +44,27 @@ function addExtraInfo(){
     }
 };
 
-function isInCart(name){
-    let flag = false;
-    cartArray.forEach((el) =>{
-        if(el.name == name){
-            return true;
-        }
-    })
-    return flag;
-}
+// function isInCart(name){
+//     let flag = false;
+//     cartArray.forEach((el) =>{
+//         if(el.name == name){
+//             return true;
+//         }
+//     })
+//     return flag;
+// }
 
 function addExtraBuyBtn(){
     buyBtn = [...document.querySelectorAll('.buy-btn')];
     for(let i = itemsLoaded; i < buyBtn.length; i++){
-        // console.log(buyBtn[i].parentElement.parentElement.querySelector('h3').textContent);
-        // if(isInCart(buyBtn[i].parentElement.parentElement.querySelector('h3').textContent))
-        // console.log(getEventListeners(document.querySelector('your-element-selector')));
         buyBtn[i].addEventListener('click', function addToCart(event){
             let elem = buyBtn[i].parentElement.parentElement;
             buyBtn[i].style.backgroundColor = '#00ff00';
             cartArray.push(
                 {
                     name: elem.querySelector('h3').innerText,
-                    price: elem.querySelector('.price').innerText,
+                    basePrice: parseInt(elem.querySelector('.price').innerText.slice(0, -1)),
+                    price: parseInt(elem.querySelector('.price').innerText.slice(0, -1)),
                     image: elem.querySelector('img').getAttribute('src'),
                     quantity: 1
                 }
@@ -73,7 +78,7 @@ function appendToCart(){
     let price = 0;
     cartItems.innerHTML = `
         ${cartArray.map(function(item){
-            price += parseInt(item.price);
+            price += parseInt(item.basePrice);
             return `
                 <div class="cart-item">
                     <div class="cart-photo">
@@ -83,7 +88,7 @@ function appendToCart(){
                         <h3>${item.name}</h3>
                         <div class="amount">
                             <input type="number" placeholder="${item.quantity}" class="quantity" min="0" max="9999" step="1">
-                            <p class="item-price">${item.price}</p>
+                            <p class="item-price">${item.price}$</p>
                         </div>
                     </div>            
                 </div>    
@@ -91,10 +96,9 @@ function appendToCart(){
         }).join('')}
     `
     // closeCart();
+    calculateFinalPrice();
     calculateItemPrice();
-    // console.log(cartArray);
-    // let res = alasql('SELECT  FROM ? SORT BY price',[cartArray]);
-    // console.log(res);
+    
 }
 
 function addBuyBtnFunctionality(name){
@@ -110,7 +114,8 @@ function addBuyBtnFunctionality(name){
                 cartArray.push(
                     {
                         name: elem.querySelector('h3').innerText,
-                        price: elem.querySelector('.price').innerText,
+                        basePrice: parseInt(elem.querySelector('.price').innerText.slice(0, -1)),
+                        price: parseInt(elem.querySelector('.price').innerText.slice(0, -1)),
                         image: elem.querySelector('img').getAttribute('src'),
                         quantity: 1
                     }
@@ -131,8 +136,18 @@ function deleteFromCart(item){
     cartArray = [...result];
 }
 
+function calculateFinalPrice(){
+    let sum = 0;
+    let itemPrices = [...document.querySelectorAll('.item-price')];
+    itemPrices.forEach((item) =>{
+        sum += parseInt(item.textContent.slice(0, -1));
+    })
+    console.log(sum);
+    document.querySelector('.final-price').innerHTML = `Final price = ${sum}$`;
+}
+
 function calculateItemPrice(){
-    let inputs = [...document.querySelector('.cart-container').querySelectorAll('input')];
+    let inputs = [...document.querySelector('.cart-container').querySelectorAll('.quantity')];
     for(let i = 0; i < inputs.length; i++){
         let elem = inputs[i].parentElement;
         let priceTag = elem.querySelector('.item-price');
@@ -140,28 +155,82 @@ function calculateItemPrice(){
             name = priceTag.parentElement.parentElement.parentElement.querySelector('h3').textContent;
         
         inputs[i].addEventListener('input', () =>{
-            let value = inputs[i].value,
-                sum = 0;
-
+            let value = inputs[i].value;
             if(value < 0){
                 value = 1;
             }
-            else if(value == 0){
+            
+            if(value == 0){
                 let cartItem = inputs[i].parentElement.parentElement.parentElement;
                 deleteFromCart(cartItem);
             }
-            for(let j = 0; j < cartArray.length; j++){
-                if(cartArray[j].name == name){
-                    cartArray[j].quantity = value;
+            else{
+                for(let j = 0; j < cartArray.length; j++){
+                    if(cartArray[j].name == name){
+                        cartArray[j].quantity = value;
+                        cartArray[j].price = cartArray[j].basePrice * value;
+                        priceTag.innerHTML = `${cartArray[j].price}$`;
+                    }
                 }
             }
+            calculateFinalPrice();  
+        }) 
+    }
+    
+}
 
-            priceTag.innerHTML = `${parseInt(price) * value}$`;
-            let itemPrices = [...document.querySelectorAll('.item-price')];
-            itemPrices.forEach((item) =>{
-                sum += parseInt(item.textContent.slice(0, -1));
-            })
-            document.querySelector('.final-price').innerHTML = `Final price = ${sum}$`;
+function closeNewsBtnHandler(){
+    if(screen.width > 600){
+        document.querySelector('.close-news').addEventListener('click', ()=>{
+            graphicsContainer.innerHTML = graphBackup;
+        })
+    }
+    else{
+        document.querySelector('.close-news-mobile').addEventListener('click', ()=>{
+            newsMobile.style.display = 'none';
+        })
+    }  
+}
+
+function showNews(newsName, text, imgSource){
+    if(screen.width > 600){
+        graphBackup = `${graphicsContainer.innerHTML}`;
+        graphicsContainer.innerHTML = `
+            <div class="news-content-item">
+                <h3 class="news-content-name">${newsName}</h3>
+                <img src="${imgSource}" alt="News Logo" class="news-image">
+                <p class="news-content">
+                    ${text}
+                </p>
+                <button class="close-news"><span class="material-icons-outlined">close</span></button>
+            </div>  
+        `;
+    }
+    else{
+        newsMobile.innerHTML = `
+            <h3 class="news-content-name">${newsName}</h3>
+            <img src="${imgSource}" alt="News Logo" class="news-image">
+            <p class="news-content">
+                ${text}
+            </p>
+            <button class="close-news-mobile"><span class="material-icons-outlined">close</span></button>
+        `;
+        newsMobile.style.display = 'flex';
+    } 
+    closeNewsBtnHandler();
+}
+
+
+function openNewsHandler(){
+    let text,
+        imgSource,
+        newsName;
+    for(let i = 0; i < newsButton.length; i++){
+        newsButton[i].addEventListener('click', ()=>{
+            text = newsButton[i].parentElement.querySelector('.news-desc').innerText;
+            newsName = newsButton[i].parentElement.querySelector('.news-name').innerText;
+            imgSource = newsButton[i].parentElement.querySelector('img').getAttribute('src');
+            showNews(newsName, text, imgSource);
         })
     }
 }
@@ -344,6 +413,50 @@ cart.addEventListener('click', () => {
     cartContainer.style.display = 'flex';
 })
 
+sortBtn.addEventListener('click', () =>{
+    let option = sortOption.value,
+        res,
+        min = parseInt(minPriceInput.value),
+        max = parseInt(maxPriceInput.value);
+
+
+        
+    if(min > max || min < 0 || max < 0){
+        document.querySelector('.cart-head').innerHTML = `Your cart is: \n Cant sort with these options!`;
+        return;
+    }
+    document.querySelector('.cart-head').innerHTML = `Your cart is: `;
+
+    if(!isNaN(min) || !isNaN(max)){
+        min = isNaN(min) ? 0 : min;
+        max = isNaN(max) ? 99999 : max;
+
+        if(option == 'asc'){
+            res = alasql('SELECT * FROM ? WHERE price >= ? AND price <= ? ORDER BY price',[cartArray, min, max]);
+        }
+        else if(option == 'desc'){
+            res = alasql('SELECT * FROM ? WHERE price >= ? AND price <= ? ORDER BY price DESC',[cartArray, min, max]);
+        }
+        else{
+            res = alasql('SELECT * FROM ? WHERE price >= ? AND price <= ? ORDER BY name',[cartArray, min, max]);
+        }
+    }
+    else{
+        if(option == 'asc'){
+            res = alasql('SELECT * FROM ? ORDER BY price',[cartArray]);
+        }
+        else if(option == 'desc'){
+            res = alasql('SELECT * FROM ? ORDER BY price DESC',[cartArray]);
+        }
+        else{
+            res = alasql('SELECT * FROM ? ORDER BY name',[cartArray]);
+        }
+    }
+      
+    cartArray = [...res];
+    appendToCart();
+})
+
 
 
 fetch("./data.json")
@@ -357,7 +470,7 @@ fetch("./data.json")
 addExtraInfo();
 addExtraBuyBtn();
 closeCart();
+openNewsHandler();
+closeNewsBtnHandler();
 
-// let datal = [{a:1,b:10}, {a:2,b:20}, {a:1,b:30}, {a:1,b:40}];
-// let res = alasql('SELECT a, SUM(b) AS b FROM ? GROUP BY a',[datal]);
-// console.log(res);
+
