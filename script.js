@@ -97,8 +97,7 @@ function appendToCart(){
     `
     // closeCart();
     calculateFinalPrice();
-    calculateItemPrice();
-    
+    calculateItemPrice();   
 }
 
 function addBuyBtnFunctionality(name){
@@ -183,6 +182,8 @@ function closeNewsBtnHandler(){
     if(screen.width > 600){
         document.querySelector('.close-news').addEventListener('click', ()=>{
             graphicsContainer.innerHTML = graphBackup;
+            destroy();
+            graph();
         })
     }
     else{
@@ -194,7 +195,7 @@ function closeNewsBtnHandler(){
 
 function showNews(newsName, text, imgSource){
     if(screen.width > 600){
-        graphBackup = `${graphicsContainer.innerHTML}`;
+        graphBackup = graphicsContainer.innerHTML;
         graphicsContainer.innerHTML = `
             <div class="news-content-item">
                 <h3 class="news-content-name">${newsName}</h3>
@@ -292,7 +293,6 @@ function showModal(){
 
 function showSubscription(){
     if(localStorage.getItem('isSubscribed') != 'true'){
-
         subContainer.style.zIndex = '5';
         document.querySelector('.sub').style.display = 'flex';
     } 

@@ -860,6 +860,9 @@ select{
     border: none;
 }
 
+canvas{
+    margin-bottom: 25px;
+}
 
 footer{
     background-color: rgb(146, 145, 145);
@@ -1070,6 +1073,10 @@ footer{
     
     .news-item{
         width: 80%;
+    }
+    canvas{
+        height: 300px;
+        width: 300px;
     }
 }
 
