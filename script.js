@@ -185,7 +185,6 @@ function calculateFinalPrice(){
     itemPrices.forEach((item) =>{
         sum += parseInt(item.textContent.slice(0, -1));
     })
-    console.log(sum);
     document.querySelector('.final-price').innerHTML = `Final price = ${sum}$`;
 }
 
@@ -224,19 +223,19 @@ function calculateItemPrice(){
 
 
 function closeNewsBtnHandler(){
-    if(screen.width > 600){
-        document.querySelector('.close-news').addEventListener('click', ()=>{
-            graphicsContainer.innerHTML = graphBackup;
-            destroy();
-            graph();
-        })
-    }
-    else{
-        document.querySelector('.close-news-mobile').addEventListener('click', ()=>{
-            let el = document.querySelector('.news-mobile-container');
-            el.remove();
-        })     
-    }  
+    document.querySelector('.close-news').addEventListener('click', ()=>{
+        graphicsContainer.innerHTML = graphBackup;
+        destroy();
+        graph();
+    })
+}
+
+function closeNewsMobile(ob){
+    ob.querySelector('.close-news-mobile').addEventListener('click', ()=>{
+        ob.querySelector('.news-desc').style.display = 'none';
+        ob.querySelector('.close-news-mobile').style.display = 'none';
+        ob.querySelector('.open-news').style.display = 'flex';
+    })  
 }
 
 function showNews(newsName, text, imgSource){
@@ -267,18 +266,10 @@ function openNewsHandler(){
                 showNews(newsName, text, imgSource);
             }
             else{
-                newsButton[i].parentElement.insertAdjacentHTML('afterend', 
-                `
-                <div class="news-mobile-container"> 
-                    <h3 class="news-content-name">${newsName}</h3>
-                    <img src="${imgSource}" alt="News Logo" class="news-image">
-                    <p class="news-content">
-                        ${text}
-                    </p>
-                    <button class="close-news-mobile"><span class="material-icons-outlined">close</span></button>  
-                </div>   
-                `);
-                closeNewsBtnHandler();
+                newsButton[i].parentElement.querySelector('.news-desc').style.display = 'flex';
+                newsButton[i].parentElement.querySelector('.close-news-mobile').style.display = 'flex';
+                newsButton[i].parentElement.querySelector('.open-news').style.display = 'none';
+                closeNewsMobile(newsButton[i].parentElement);
             }           
         })
     }
@@ -286,26 +277,25 @@ function openNewsHandler(){
 
 function addNews(){
     let arr;
-    console.log(newsArray);
     arr = alasql('SELECT * FROM ? ORDER BY date DESC',[newsArray]);
-    console.log(arr);
-
     showNewsBtn.insertAdjacentHTML('beforebegin', `
         ${arr.map(function(item){
             return `
             <div class="news-item">
                 <h3 class="news-name ${item.important ? 'important' : ''}">${item.name}</h3>
                 <img src="${item.image}" alt="News Logo" class="news-image">
+                <span class="news-date">${item.date}</span>
                 <p class="news-desc">
                     ${item.description}
-                </p>
-                <span class="news-date">${item.date}</span>
+                </p> 
                 <button class="open-news">Open News</button>
+                <button class="close-news-mobile"><span class="material-icons-outlined">close</span></button>
             </div>    
             `
         })} 
     `);
     openNewsHandler();
+    showNewsBtn.removeEventListener('click', addNews);
 }
 
 function getDiscount(discountSize){
@@ -531,6 +521,8 @@ sortBtn.addEventListener('click', () =>{
 })
 
 showNewsBtn.addEventListener('click', addNews);
+
+
 graphBackup = graphicsContainer.innerHTML;
 
 

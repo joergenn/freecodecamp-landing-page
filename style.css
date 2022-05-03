@@ -744,6 +744,7 @@ select{
 }
 
 .news-item{
+    position: relative;
     max-width: 350px;
     width: 100%;
     padding: 10px;
@@ -763,6 +764,8 @@ select{
 
 .news-desc{
     display: none;
+    padding: 10px;
+    text-align: justify;
 }
 
 .open-news{
@@ -838,18 +841,23 @@ select{
     background-color: rgb(214, 174, 44);
     font-size: 8px;
     top: 20px;
-    right: 20px;
-    display: flex;
+    right: 10px;
+    display: none;
     justify-content: center;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     cursor: pointer;
     border: none;
     position: absolute;
+    border-radius: 5px;
 }
 
 .news-content-name{
     width: 70%;
+}
+
+.news-name{
+    margin-right: 25px;
 }
 
 .news-date{
