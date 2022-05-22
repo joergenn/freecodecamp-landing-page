@@ -5,6 +5,7 @@
         "price": 400,
         "discount": 0,
         "image": "src/4.jpg",
+        "popularity": 124,
         "benefits": ["12.30mm bore", "Lightweight instrument", "8” bell", "Nickel silver valves"]
     },
     {
@@ -13,6 +14,7 @@
         "price": 520,
         "discount": 50,
         "image": "src/5.jpg",
+        "popularity": 84,
         "benefits": ["Yellow brass slide and tuning slide", "Lightweight instrument", "Perfect for younger players", "Medium Bore"]
     },
     {
@@ -21,6 +23,7 @@
         "price": 700,
         "discount": 0,
         "image": "src/6.jpg",
+        "popularity": 201,
         "benefits": ["12.30mm bore", "8” bell", "Key: C"]
     },
     {
@@ -29,6 +32,7 @@
         "price": 750,
         "discount": 0,
         "image": "src/7.jpg",
+        "popularity": 91,
         "benefits": ["Short slide design enabling younger players to achieve the whole range of notes", "Ergonomic thumb rest/trigger"]
     },
     {
@@ -37,6 +41,7 @@
         "price": 880,
         "discount": 20,
         "image": "src/8.jpg",
+        "popularity": 70,
         "benefits": ["Small shank bore measuring .525", "Large bore tenor trombone boasts an 8 bell", "Bell ring providing a robust structure", "Rose brass bell ensuring a full, dark sound"]
     },
     {
@@ -45,6 +50,7 @@
         "price": 950,
         "image": "src/9.jpg",
         "discount": 15,
+        "popularity": 139,
         "benefits": ["A bell ring provides a robust structure and a rose brass bell ensures a full, dark sound", "Large bore 13.8mm (.547\")"]
     },
     {
@@ -53,6 +59,7 @@
         "price": 1040,
         "discount": 0,
         "image": "src/10.jpg",
+        "popularity": 190,
         "benefits": ["Key Of: Bb", "Finish: Lacquered Brass", "Outer Slide Material: Nickel Silver", "Bore Size: .500\""]
     },
     {
@@ -61,6 +68,7 @@
         "price": 1185,
         "discount": 0,
         "image": "src/11.jpg",
+        "popularity": 290,
         "benefits": ["Many players choose Yamaha as they are a widely respected and trusted brand", "Warranty: 2 Years", "Bore: Medium 12.70mm (0.500\")"]
     },
     {
@@ -69,6 +77,7 @@
         "price": 1300,
         "discount": 0,
         "image": "src/12.jpg",
+        "popularity": 196,
         "benefits": ["Key Of: Bb", "Bell Diameter: 20.3cm (8\")", "Bell Material: Yellow Brass", "2 Piece Yellow Brass Bell", "Bore Size: 1.31cm (0.51\")"]
     },
     {
@@ -77,6 +86,34 @@
         "price": 1550,
         "image": "src/13.jpg",
         "discount": 25,
+        "popularity": 195,
         "benefits": ["12.30mm bore", "8” bell", "Bell Size: Yellow Brass 203mm (8\")"]
+    },
+    {
+        "name": "Jupiter JSL-132 Bb",
+        "description": "This trombone is ideal for the older beginner. Perfect for training bands, this trombone is best suited for brass band and orchestral playing.",
+        "price": 600,
+        "discount": 0,
+        "image": "src/1.jpg",
+        "popularity": 208,
+        "benefits": ["12.30mm bore", "8” bell", "Mouthpiece: JP605"]
+    },
+    {
+        "name": "John Packer JP031 Bb",
+        "description": "As a beginner on the trombone, you will find this entry level medium bore Bb trombone perfect for you. The instrument's medium bore offers versatility with little resistance and its 8\" bell gives you great sound projection.",
+        "price": 500,
+        "discount": 0,
+        "image": "src/2.jpg",
+        "popularity": 228,
+        "benefits": ["Yellow brass slide and tuning slide", "Valve section for a King 3b Tenor Trombone", "All valves are slick and smooth"]
+    },
+    {
+        "name": "John Packer JP136 Eb Alto Trombone",
+        "description": "Start exploring the world of the alto trombone playing with the JP136 which you will find perfect as an orchestral musician.",
+        "price": 300,
+        "image": "src/3.jpg",
+        "discount": 25,
+        "popularity": 124,
+        "benefits": ["Yellow brass slide and tuning slide", "Lightweight instrument", "Perfect for younger players"]
     }
 ]

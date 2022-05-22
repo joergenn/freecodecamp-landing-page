@@ -23,7 +23,7 @@
         <nav class="nav-bar">
             <a href="#news-block"><img src="src/news.svg" height="35px" alt="News" id="news"></a>
             <img src="src/cart.svg" height="35px" alt="Shopping Cart" id="cart">
-            <a class="nav-link" href="#features">Features</a>
+            <a class="nav-link" id="log-btn" disabled="disabled">Sign Up</a>
             <a class="nav-link" href="#how-it-works">How It Works</a>
             <a class="nav-link" href="#pricing">Pricing</a>
         </nav>
@@ -64,7 +64,7 @@
             <iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/y8Yv4pnO7qc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="goods">
-            <div class="item">
+            <!-- <div class="item">
                 <img src="src/1.jpg" alt="Trombone" class="image">
                 <div class="description">
                     <h3>Jupiter JSL-132 Bb</h3>
@@ -125,10 +125,31 @@
                 <div class="discount">
                     <span>33% OFF!</span>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="more">
             <input class="show-more" type="submit" value="Show More">
+        </div>
+        <div class="admin-panel-parent">
+            <div class="admin-panel">
+                <div class="input-field">
+                    <label for="goods-name">Enter name</label>
+                    <input id="goods-name" name="goods-name" type="text" required>
+                </div>
+                <div class="input-field">
+                    <label for="goods-path">Enter path to image</label>
+                    <input id="goods-path" name="goods-path" type="text" required>
+                </div>
+                <div class="input-field">
+                    <label for="goods-price">Enter price</label>
+                    <input id="goods-price" name="goods-price" type="number" required>    
+                </div>
+                <div class="input-field">
+                    <label for="goods-info">Enter info</label>
+                    <textarea name="goods-info" id="goods-info" cols="35" rows="10" required></textarea>
+                </div>
+                <button class="sort-btn"><span>Add item</span></button>
+            </div>
         </div>
         <div class="go-up">
             <span class="material-icons-outlined">arrow_upward</span>
@@ -199,6 +220,37 @@
                 </div>        
                 <h3 class="final-price">Final price = 0</h3>
             </div>       
+        </div>
+        <div class="authorize-parent">
+            <form class="authorize-container" action="">
+                <div class="form-info">
+                    <p class="form-name">Sign Up Form</p>
+                    <p class="required-fields">* - required fields</p>
+                </div>
+                <div class="warnings">
+                </div>
+                <div class="fields">
+                    <div class="input-field">
+                        <label for="email-authorize">Enter your email<span class="red">*</span></label>
+                        <input id="email-authorize" name="email-authorize" type="text" placeholder="abc@example.com" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="pass-authorize1">Enter your password<span class="red">*</span></label>
+                        <input id="pass-authorize1" name="pass-authorize1" type="password" placeholder="********" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="pass-authorize2">Repeat your password<span class="red">*</span></label>
+                        <input id="pass-authorize2" name="pass-authorize2" type="password" placeholder="********" required>    
+                    </div>
+                    <div class="remember-block">
+                        <label for="remember-me">Remember me</label>
+                        <input id="remember-me" name="remember-me" type="checkbox" checked>
+                    </div>
+                    <input class="log-btn" type="submit" value="Sign Up">
+                </div> 
+                <button class="close-authorize"><span class="material-icons-outlined">close</span></button>
+            </form>
+
         </div>
         <div class="container">
             <div class="graphics">
