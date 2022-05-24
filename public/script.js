@@ -34,51 +34,6 @@ const button = document.querySelector('.ham-menu'),
 
 let benefitsBtn, benefitsList, data, newData, buyBtn, itemsLoaded = 0, cartArray = [], cartBack = [], graphBackup, newsArray = [];
 
-// let newsArray = [
-//     {
-//         "name": "Google доповнила функціонал браузера Chrome на Android",
-//         "description": "Компанія Google рідко змінює інтерфейс та оформлення Chrome. Тим не менш, одна з таких змін стала частиною Chrome на Android – додавання ярлика панелі інструментів, що настроюється. На Android інтерфейс є панель з адресним рядком, перемикачем вкладок і переливним меню, в якому багато дій представлені у вигляді довгого списку. Тепер Google впроваджує “ярлик панелі інструментів” між омнібоксом та лічильником вкладок. Тут може з’явитися одна з трьох дій: Нова вкладка (як знак плюс), Поділитися або Голосовий пошук (як мікрофон).",
-//         "date": "2022-05-02",
-//         "important": true,
-//         "image": "src/news4.jpg"
-//     },
-//     {
-//         "name": "Що включатиме преміум-підписка на Telegram",
-//         "description": "Нещодавно пройшла чутка, що Telegram готується ввести платні функції.Повідомляється, що у бета-версії програми для iOS виявили інтерфейс Telegram Premium. Передбачається, що користувачам, які оплатили передплату, будуть доступні платні реакції. Це означає, що на додаток до наявних вони отримають нові. Крім того, підписники матимуть доступ до платних стікерів з повноекранною анімацією. Поки що це все, що вдалося виявити. Скільки буде коштувати підписка і коли з’явиться, поки що неясно. Ймовірно, переліченими вище функціями все вичерпуватися не буде.",
-//         "date": "2022-04-25",
-//         "important": false,
-//         "image": "src/news5.jpg"
-//     },
-//     {
-//         "name": "MICROSOFT зробить VPN у власному браузері EDGE",
-//         "description": "Американська корпорація Microsoft тестує новий VPN-сервіс та збирається впровадити його у браузер Edge. Сторінка з описом нових можливостей з'явилася на сайті Microsoft. Функція під назвою Microsoft Edge Secure Network працюватиме на основі розробок Cloudflare. Microsoft не позиціонує її як VPN, однак вказує, що вона шифруватиме підключення користувача до інтернету для захисту його даних. Сервіс використовуватиме IP-адресу з найближчого регіону, можливості вибору геолокації VPN-сервісу не буде.",
-//         "date": "2022-04-23",
-//         "important": false,
-//         "image": "src/news6.jpg"
-//     },
-//     {
-//         "name": "Xiaomi випустила чудові нові телевізори Smart TV 5A за ціною 6000 гривень",
-//         "description": "Ось нарешті й настав той самий довгоочікуваний день, якого багато людей напевно дуже давно чекали. Китайська корпорація Xiaomi представила на території Індії нову лінійку телевізорів під назвою Smart TV 5A, яка є п’ятим поколінням фірмових ТВ бренду. Новинки, які входять у модельний ряд, мають схожий привабливий зовнішній вигляд, дуже доступну вартість, просунуте технічне оснащення, а разом з тим інші особливості. Оскільки йдеться про міжнародні моделі, вже незабаром придбати собі такі зможуть усі охочі, зокрема жителі України та інших держав. Вартість новинок стартує з позначки $200 доларів. Покупцям на вибір пропонують три моделі, які відрізняються один від одного діагоналлю екрана. Новинки мають діагональ 32, 40 і 43 дюйми, причому у всіх випадках роздільна здатність матриці IPS становить 1920 на 1080 пікселів (Full HD або 1080p). Нові моделі, як запевняє компанія-виробник, мають підтримку запатентованої технології обробки зображень Vivid Picture Engine від компанії Xiaomi, яка забезпечує кращу якість перегляду за рахунок підвищення контрастності та кольорів на основі машинного навчання та ІІ. Базова модель телевізора може похвалитися 4-ядерним процесором А35, 1 ГБ оперативної та 8 ГБ вбудованої пам’яті, а також динаміками потужністю 20 Вт. Цього більш ніж достатньо будь-якому сучасному користувачеві.",
-//         "date": "2022-04-29",
-//         "important": true,
-//         "image": "src/news3.jpg"
-//     },
-//     {
-//         "name": "Фінляндія передасть ЗСУ конфісковані Bitcoin",
-//         "description": "Стало відомо, що в уряду Фінляндії є плани пожертвувати Україні для підсилення обороноздатності проти російського вторгнення криптовалюту Bitcoin (BTC). Згідно з даними фінського видання Helsingin Sanomat, зараз в уряду Фінляндії на рахунках 1981 Bitcoin, що приблизно еквівалентно 78 мільйонам доларів. Більшість цих коштів вилучили у ході розслідувань торгівлі та обігу наркотиків. Фінським судом було видане розпорядження передати ці BTC країні, що зможе провести їхній обмін на звичайну валюту, але процес не пішов далі. Зараз стало відомо, що ці Bitcoin можуть передати Україні (інсайдерські джерела вказують на те, що мова йде про більшу частину цієї суми. Зараз фінський уряд обговорює процес, що дозволить передати Україні ці BTC. Проблема в тому, що у країні відсутній юридичний механізм, що дозволяє передати BTC, не витрачаючи час на довгі бюрократичні процеси. Крім цього, у деяких фінських політиків є побоювання, що важко буде проконтролювати, на що були витрачені ці кошти (хоча такий самий ризик є і з традиційними валютами). Тим не менше, усі питання мають бути вирішені найближчим часом, внаслідок чого в Україну надійдуть додаткові кошти.",
-//         "date": "2022-04-24",
-//         "important": true,
-//         "image": "src/news2.jpg"
-//     },
-//     {
-//         "name": "NASA: повз Землю пролетів 780-метровий астероїд",
-//         "description": "У NASA повідомили, що повз Землю зі швидкістю понад 37 тис. км/год пролетів астероїд діаметром від 350 до 780 метрів. Астероїд наблизився до Землі на 3,2 млн км (більше 8 відстаней до Місяця), що змушує вважати його потенційно небезпечним для нашої планети об’єктом. Свій наступний прохід поруч із Землею цей астероїд зробить у травні 2029 року і так відбуватиметься приблизно кожні сім років. Астероїд 418135 (2008 AG33) уперше виявлений астрономами 12 січня 2008 року. Відкриття зробили вчені обсерваторії Mt. Lemmon SkyCenter в Аризоні і востаннє він пронісся повз Землю 1 березня 2015 року, згідно з даними Центру NASA з вивчення об’єктів поблизу Землі (CNEOS). Навколоземними об’єктами вважаються всі небесні тіла, які наближаються до нашої планети на 193 млн. км і ближче. Потенційно небезпечними стають ті з них, які зближуються із Землею на дистанцію менше ніж 7,5 млн км. Астероїд 2008 AG33, як бачимо, пролетів на вдвічі меншому віддаленні від Землі – фактично за один крок від нас.",
-//         "date": "2022-04-20",
-//         "important": true,
-//         "image": "src/news1.jpg"
-//     }
-// ];
-
 function addExtraInfo(){
     benefitsBtn = [...document.querySelectorAll('.more-info')],
     benefitsList = [...document.querySelectorAll('.benefits')];
@@ -93,19 +48,8 @@ function addExtraInfo(){
     }
 };
 
-// function isInCart(name){
-//     let flag = false;
-//     cartArray.forEach((el) =>{
-//         if(el.name == name){
-//             return true;
-//         }
-//     })
-//     return flag;
-// }
-
 function addExtraBuyBtn(){
     if(sessionStorage.getItem('loggedIn') == 'false'){
-        // itemsLoaded -= 3;
         return;
     }
     buyBtn = [...document.querySelectorAll('.buy-btn')];
@@ -149,7 +93,6 @@ function appendToCart(){
             `
         }).join('')}
     `
-    // closeCart();
     calculateFinalPrice();
     calculateItemPrice();   
 }
@@ -350,7 +293,7 @@ function closeModal(){
     let i, timer;
     closeModalBtn.style.display = 'flex';
 
-    i = 9;
+    i = 5;
     timer = setInterval(() =>{
         closeModalSpan.innerHTML = `${i}`;
         i--;
@@ -383,7 +326,6 @@ function showSubscription(){
 function append(){
     showModal();
     newData = data.slice(-3);
-    // itemsLoaded += newData.length;
     for(let i = 0; i < 3; i++){
        data.pop();
     }
@@ -416,7 +358,6 @@ function append(){
 
     addExtraInfo();
     addExtraBuyBtn();
-    // addBuyBtnFunctionality();
 
     if(data.length == 0){
         showMoreBtn.style.display = 'none';
@@ -429,6 +370,35 @@ function closeCart(){
     closeCartBtn.addEventListener('click', () => {
         cartContainer.style.display = 'none';
     })
+}
+
+function storageInit(){
+    if(localStorage.getItem('isRegistered') == 'true'){
+        document.querySelector('#log-btn').innerHTML = 'Log In';
+    }
+    else if(localStorage.getItem('isRegistered') == null){
+        localStorage.setItem('isRegistered', 'false');
+    }
+
+    if(sessionStorage.getItem('loggedIn') == null){
+        sessionStorage.setItem('loggedIn', 'false');
+    }
+    else if(sessionStorage.getItem('loggedIn') == 'true'){
+        console.log('Already logged in');
+        document.querySelector('#log-btn').innerHTML = `<img src="src/user.png" height="35px" alt="User" id="user-icon">`;
+    }
+
+    if(localStorage.getItem('email') == null){
+        localStorage.setItem('email', '_');
+    }
+    if(localStorage.getItem('pass') == null){
+        localStorage.setItem('pass', '_');
+    }
+    if(localStorage.getItem('remember_me') == null){
+        localStorage.setItem('remember_me', 'false');
+    }
+
+
 }
 
 showMoreBtn.addEventListener('click', append);
@@ -552,14 +522,17 @@ displayLog.addEventListener('click', () =>{
         document.querySelector('.form-name').innerHTML = `Log In Form`;
         document.querySelector('#pass-authorize2').parentElement.remove();
     }
-    if(localStorage.getItem('email').length > 1){
-        document.querySelector('#email-authorize').value = localStorage.getItem('email');
-    }
-    if(localStorage.getItem('pass').length > 8){
-        document.querySelector('#pass-authorize1').value = localStorage.getItem('pass');
-        if(localStorage.getItem('isRegistered') == 'false'){
-            document.querySelector('#pass-authorize2').value = localStorage.getItem('pass');
+
+    if(localStorage.getItem('remember_me') == 'true'){
+        if(localStorage.getItem('email').length > 1){
+            document.querySelector('#email-authorize').value = localStorage.getItem('email');
         }
+        if(localStorage.getItem('pass').length > 8){
+            document.querySelector('#pass-authorize1').value = localStorage.getItem('pass');
+            if(localStorage.getItem('isRegistered') == 'false'){
+                document.querySelector('#pass-authorize2').value = localStorage.getItem('pass');
+            }
+        }   
     }
 })
 
@@ -590,10 +563,9 @@ logForm.addEventListener('submit', (e) =>{
     
     if(checkbox.value === 'on'){
         localStorage.setItem('remember_me', 'true'); 
-
     }
+
     if(messages.length > 0){
-        // e.preventDefault();
         document.querySelector('.warnings').innerHTML = `
             ${messages.map(function(el){
                 return `<p>${el}</p>`
@@ -608,6 +580,21 @@ logForm.addEventListener('submit', (e) =>{
             localStorage.setItem('isRegistered', 'true');
             document.querySelector('.form-info').innerHTML = `Thanks for signing up!`;
             document.querySelector('.fields').style.display = 'none';
+            document.querySelector('.warnings').style.display = 'none';
+            const payload = {
+                'email': email.value,
+                'password': pass1.value
+            };
+            const options ={
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            };
+            fetch('/register', options).then(res =>{
+                console.log('Registration - ', res['status']);
+            });
             
         }
         else if(localStorage.getItem('isRegistered') == 'true'){
@@ -615,6 +602,7 @@ logForm.addEventListener('submit', (e) =>{
             document.querySelector('#log-btn').innerHTML = `<img src="src/user.png" height="35px" alt="User" id="user-icon">`;
             document.querySelector('.form-info').innerHTML = `Thanks for logging up!`;
             document.querySelector('.fields').style.display = 'none';
+            document.querySelector('.warnings').style.display = 'none';
             const payload = {
                 'email': email.value,
                 'password': pass1.value
@@ -627,11 +615,8 @@ logForm.addEventListener('submit', (e) =>{
                 body: JSON.stringify(payload)
             };
             fetch('/log_in', options).then(res =>{
-                console.log(res);
-            }).then(re =>{
-                console.log(re);
+                console.log('Authorization - ', res['status']);
             });
-
             addExtraBuyBtn();
         }
     }  
@@ -640,15 +625,7 @@ logForm.addEventListener('submit', (e) =>{
 showNewsBtn.addEventListener('click', addNews);
 graphBackup = graphicsContainer.innerHTML;
 
-
-// fetch("./data.json")
-//     .then(function(resp){
-//         return resp.json();
-//     })
-//     .then(function(jsonData){
-//         data = jsonData;
-//     });
-fetch("https://raw.githubusercontent.com/joergenn/freecodecamp-landing-page/main/data.json")
+fetch("https://raw.githubusercontent.com/joergenn/freecodecamp-landing-page/main/public/data.json")
     .then(function(resp){
         return resp.json();
     })
@@ -656,24 +633,16 @@ fetch("https://raw.githubusercontent.com/joergenn/freecodecamp-landing-page/main
         data = jsonData;
     });
 
-fetch("https://raw.githubusercontent.com/joergenn/freecodecamp-landing-page/main/news.json")
+fetch("https://raw.githubusercontent.com/joergenn/freecodecamp-landing-page/main/public/news.json")
     .then(function(resp){
         return resp.json();
     })
     .then(function(jsonData){
         newsArray = jsonData;
     });
- 
-// addExtraInfo();
-// addExtraBuyBtn();
+
+storageInit();
 closeCart();
 openNewsHandler();
-if(sessionStorage.getItem('loggedIn') == null){
-    sessionStorage.setItem('loggedIn', 'false');
-}
-if(localStorage.getItem('isRegistered') == 'true'){
-    document.querySelector('#log-btn').innerHTML = 'Log In';
-}
-// closeNewsBtnHandler();
 
 
